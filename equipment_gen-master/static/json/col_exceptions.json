@@ -1,0 +1,62 @@
+{
+    "hands": {"min": 1, "max": 2},
+    "name": {},
+    "base_damage_min": {"min": 0},
+    "base_damage_max": {"min": 0},
+    "damage_type_primary": {
+        "type": "dropdown",
+        "ref": "damage_types"
+    },
+    "damage_type_secondary": {
+        "type": "dropdown",
+        "ref": "damage_types"
+    },
+    "base_weight": {"min": 0},
+    "base_attacks_per_second": {
+        "type": "range", 
+        "min": "0.5", 
+        "max": "10",
+        "step": "0.1"
+    },
+    "base_hit_chance": {
+        "type": "range", 
+        "min": 0, 
+        "max": 1,
+        "step": "0.01"
+    },
+    "description": {"max": 200},
+    "culture": {
+        "type": "dropdown",
+        "ref": "cultures"
+    },
+    "status_effect": {
+        "type": "dropdown",
+        "ref": "status_effects"
+    },
+    "base_duration": {
+        "type": "range",
+        "min": 0.1,
+        "max": 20,
+        "step": "0.1"
+    },
+    "weapon_slot_primary": {
+        "type": "dropdown",
+        "ref": "unique_weapons"
+    },
+    "weapon_slot_secondary": {
+        "type": "dropdown",
+        "ref": "unique_weapons"
+    },
+    "head_slot": {
+        "type": "dropdown",
+        "ref": "unique_armor"
+    },
+    "chest_slot": {
+        "type": "dropdown",
+        "ref": "unique_armor"
+    },
+    "legs_slot": {
+        "type": "dropdown",
+        "ref": "unique_armor"
+    }
+}

@@ -1,0 +1,174 @@
+/*
+ * This is the CSS stylesheet for the demo weapons application
+ */
+
+ @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
+
+ /* Custom classes (may delete later) */
+
+ table {
+     width: 100%;
+     border-collapse: collapse;
+ }
+ 
+ table, caption, th, td {
+     border: 1px solid lightgrey;
+ }
+ 
+ table caption {
+     height: 33px;
+     font-weight: bold;
+     padding-top: 5px;
+     border-bottom: none;
+ }
+ 
+ tr {
+     height: 33px;
+ }
+ 
+ tr:nth-child(even) {
+     background-color: #f0f0f0
+ }
+ 
+ td {
+     text-align: center;
+ }
+ 
+ .error {
+     width: 50%;
+     margin-left: auto;
+     margin-right: auto;
+     padding: 5px;
+     border: 1px solid lightgrey;
+     border-radius: 3px;
+     background-color: #fbb;
+     visibility: hidden;
+ }
+    
+:root {
+    --c-primary: #F2A74B  /*Important things (important links and information)*/;
+    --c-secondary: #F2E6D8; /*Secondary important things (Somewhat important stuff: icons, tool-tips, etc)*/
+    --c-tertiary: #4d2503;  /*Tertiary stuff, accents and such (Not important stuff)*/
+    --c-accent-light: rgb(217, 82, 4); /*Extra coloring for extra stuff (shadows, icons, etc)*/
+    --c-accent-dark: #4b0c06;  /*Extra coloring for extra stuff (shadows, icons, etc)*/
+    --c-text-primary: #eeeeee; /*The normal color of text (most stuff)*/
+    --c-text-secondary: #8C0E03; /*The secondary color of text (for faded or less-important info)*/
+    --c-light: rgb(224, 224, 224);
+    --c-dark: #0e0e0e;
+
+    --footer-height: 128px;
+}
+
+body {
+    font-family: Roboto;
+    min-height: 1200px;
+    position: relative;
+    margin: 0;
+    background-color: var(--c-light);
+ }
+
+ /* Modify Bootstrap */
+ .navbar-light .navbar-nav .nav-item .nav-link {
+    color: inherit;
+}
+ /* Modify Bootstrap */
+ .navbar-light .navbar-nav .nav-item .nav-link:hover {
+    color: var(--c-accent-light);
+}
+
+/* Custom Classes */
+
+ .c-jumbo {
+     background-color: var(--c-primary);
+     color: var(--c-text-secondary)
+ }
+
+ .c-nav {
+    margin-bottom: 24px;
+    /* background-color: var(--c-tertiary); */
+    color: var(--c-text-primary);
+    padding-left: auto;
+    font-size: 16px;
+    background: rgb(77,37,3);
+    background: linear-gradient(180deg, rgba(77,37,3,1) 66%, rgba(2,0,36,1) 100%);
+}
+
+ .c-card-class {
+    max-width: 16rem;
+    background-color: var(--c-tertiary);
+    color: var(--c-text-primary);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.c-card-class-lg{
+    max-width: 100%;
+    background-color: var(--c-tertiary);
+    color: var(--c-text-primary);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 24px;
+}
+
+.c-card-class:hover {
+    color: var(--c-accent-light);
+}
+.c-card-class-lg:hover {
+    color: var(--c-accent-light);
+    text-decoration-line: none;
+}
+.c-card-link,
+.c-card-link:hover {
+    text-decoration: none;
+}
+.button-container {
+    color: inherit;
+}
+
+/* Table formatting */
+.c-table {
+    color: inherit;
+    background-color: var(--c-tertiary);
+    color: var(--c-text-primary);
+    border: 2px solid var(--c-accent-light);
+}
+
+.c-table th {
+    text-align: center;
+}
+.c-table tr {
+    border: 2px solid var(--c-accent-light);
+    outline-color: var(--c-primary);
+}
+.c-table tr:focus {
+    outline-color: var(--c-primary)
+}
+.c-table tr:nth-child(even) {
+    background-color: var(--c-accent-dark);
+}
+.c-table td {
+    color: inherit
+}
+/* Selected row color */
+.table.b-table>tbody>.table-active, .table.b-table>tbody>.table-active>td, .table.b-table>tbody>.table-active>th {
+    background-color: var(--c-text-secondary);
+}
+.c-table-container {
+    padding: 16px;
+}
+.c-table caption {
+    height: auto;
+    padding-left: 16px;
+    font-size: 24px;
+}
+
+.main-body {
+    margin-bottom: 20px;
+}
+
+.footer {
+    padding-top: 50px;
+    position: absolute;
+    bottom: 0;
+ }
+
+ .c-card-group {
+     bottom: var(--footer-height);
+ }

@@ -1,0 +1,128 @@
+# [plural]
+  /[plural]:
+    get:
+      operationId: [plural].read_all
+      tags:
+        - [plural]
+      summary: Read the entire set of [plural], sorted by last name
+      description: Read the entire set of [plural], sorted by last name
+      responses:
+        200:
+          description: Successfully read [plural] set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the [singular]
+
+    post:
+      operationId: [plural].create
+      tags:
+        - [plural]
+      summary: Create a [singular]
+      description: Create a new [singular]
+      parameters:
+        - name: [singular]
+          in: body
+          description: [singular] to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created [singular]
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the [singular]
+
+  /[plural]/{id}:
+    get:
+      operationId: [plural].read_one
+      tags:
+        - [plural]
+      summary: Read one [singular]
+      description: Read one [singular]
+      parameters:
+        - name: id
+          in: path
+          description: Id of the [singular] to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read [singular] from [plural] data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the [singular]
+
+    put:  
+      operationId: [plural].update
+      tags:
+        - [plural]
+      summary: Update a [singular]
+      description: Update a [singular]
+      parameters:
+        - name: id
+          in: path
+          description: Id the [singular] to update
+          type: integer
+          required: True
+        - name: [singular]
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated [singular]
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the [singular] in the database
+
+    delete:
+      operationId: [plural].delete
+      tags:
+        - [plural]
+      summary: Delete a [singular] from the [plural] list
+      description: Delete a [singular]
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the [singular] to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a [singular]
+
+  /[plural]/cols:
+    get:
+      operationId: [plural].read_[singular]_cols
+      tags:
+        - [plural]
+      summary: Read [singular] columns
+      description: Read [singular] columns
+      responses:
+        200:
+          description: Successfully read columns of [plural]
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the [singular] record
+   

@@ -1,0 +1,1798 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+# Column Exceptions
+  /col_exceptions:
+    get:
+      operationId: backend.get_col_exceptions
+      tags:
+        - Backend
+      summary: Read the column exceptions json and return it
+      description: Read the column exceptions and return as json
+      responses:
+        200:
+          description: Successfully read backend column exceptions operation
+          schema:
+            type: string
+# Get Random Item
+  /get_random_item:
+    get:
+      operationId: backend.get_random_item
+      tags:
+        - Backend
+      summary: Returns a randomized item dict based on the items in the database
+      description: Returns a randomized item dict based on the items in the database
+      responses:
+        200:
+          description: Successfully read random item
+          schema:
+            type: string
+  
+# Base Weapons
+  /base_weapons:
+    get:
+      operationId: base_weapons.read_all
+      tags:
+        - People
+      summary: Read the entire set of base_weapons, sorted by last name
+      description: Read the entire set of base_weapons, sorted by last name
+      responses:
+        200:
+          description: Successfully read base_weapons set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the weapon
+                fname:
+                  type: string
+                  description: First name of the weapon
+                lname:
+                  type: string
+                  description: Last name of the weapon
+                timestamp:
+                  type: string
+                  description: Creation/Update timestamp of the weapon
+
+    post:
+      operationId: base_weapons.create
+      tags:
+        - People
+      summary: Create a weapon
+      description: Create a new weapon
+      parameters:
+        - name: weapon
+          in: body
+          description: Weapon to create
+          required: True
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+                description: First name of weapon to create
+              lname:
+                type: string
+                description: Last name of weapon to create
+      responses:
+        201:
+          description: Successfully created weapon
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the weapon
+              fname:
+                type: string
+                description: First name of the weapon
+              lname:
+                type: string
+                description: Last name of the weapon
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the weapon record
+
+  /base_weapons/{id}:
+    get:
+      operationId: base_weapons.read_one
+      tags:
+        - People
+      summary: Read one weapon
+      description: Read one weapon
+      parameters:
+        - name: id
+          in: path
+          description: Id of the weapon to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read weapon from base_weapons data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the weapon
+              fname:
+                type: string
+                description: First name of the weapon
+              lname:
+                type: string
+                description: Last name of the weapon
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the weapon record
+
+    put:  
+      operationId: base_weapons.update
+      tags:
+        - People
+      summary: Update a weapon
+      description: Update a weapon
+      parameters:
+        - name: id
+          in: path
+          description: Id the weapon to update
+          type: integer
+          required: True
+        - name: weapon
+          in: body
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+                description: First name of the weapon
+              lname:
+                type: string
+                description: Last name of the weapon
+      responses:
+        200:
+          description: Successfully updated weapon
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the weapon in the database
+              fname:
+                type: string
+                description: First name of the weapon
+              lname:
+                type: string
+                description: Last name of the weapon
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the weapon record
+
+    delete:
+      operationId: base_weapons.delete
+      tags:
+        - People
+      summary: Delete a weapon from the base_weapons list
+      description: Delete a weapon
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the weapon to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a weapon
+
+  /base_weapons/cols:
+    get:
+      operationId: base_weapons.read_weapon_cols
+      tags:
+        - base_Weapons
+      summary: Read weapon columns
+      description: Read weapon columns
+      responses:
+        200:
+          description: Successfully read columns of base_Weapons
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+          
+# Damage Types
+  /damage_types:
+    get:
+      operationId: damage_types.read_all
+      tags:
+        - People
+      summary: Read the entire set of damage_types, sorted by last name
+      description: Read the entire set of damage_types, sorted by last name
+      responses:
+        200:
+          description: Successfully read damage_types set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the damage_type
+                type:
+                  type: string
+                  description: The type of damage (e.g. slash)
+                description:
+                  type: string
+                  description: The description of the damage type
+
+    post:
+      operationId: damage_types.create
+      tags:
+        - People
+      summary: Create a damage_type
+      description: Create a new damage_type
+      parameters:
+        - name: damage_type
+          in: body
+          description: damage_type to create
+          required: True
+          schema:
+            type: object
+            properties:
+              type:
+                type: string
+                description: First name of weapon to create
+              description:
+                type: string
+                description: Last name of weapon to create
+      responses:
+        201:
+          description: Successfully created data_type
+          schema:
+            properties:
+              data_type_id:
+                type: string
+                description: Id of the data_type
+              type:
+                type: string
+                description: First name of the data_type
+              description:
+                type: string
+                description: Last name of the data_type
+
+  /damage_types/{id}:
+    get:
+      operationId: damage_types.read_one
+      tags:
+        - People
+      summary: Read one damage_type
+      description: Read one damage_type
+      parameters:
+        - name: id
+          in: path
+          description: Id of the damage_type to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read damage_type from damage_types data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the damage_type
+              type:
+                type: string
+                description: First name of the damage_type
+              description:
+                type: string
+                description: Last name of the damage_type
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+
+    put:
+      operationId: damage_types.update
+      tags:
+        - People
+      summary: Update a damage_type
+      description: Update a damage_type
+      parameters:
+        - name: id
+          in: path
+          description: Id the damage_type to update
+          type: integer
+          required: True
+        - name: damage_type
+          in: body
+          schema:
+            type: object
+            properties:
+              type:
+                type: string
+                description: First name of the damage_type
+              description:
+                type: string
+                description: Last name of the damage_type
+      responses:
+        200:
+          description: Successfully updated damage_type
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the damage_type in the database
+              type:
+                type: string
+                description: First name of the damage_type
+              description:
+                type: string
+                description: Last name of the damage_type
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+
+    delete:
+      operationId: damage_types.delete
+      tags:
+        - People
+      summary: Delete a damage_type from the damage_types list
+      description: Delete a damage_type
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the damage_type to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a damage_type
+
+  /damage_types/cols:
+    get:
+      operationId: damage_types.read_damage_types_cols
+      tags:
+        - Damage_Types
+      summary: Read damage types columns
+      description: Read damage types columns
+      responses:
+        200:
+          description: Successfully read columns of Damage Types
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+  
+# Cultures
+  /cultures:
+    get:
+      operationId: cultures.read_all
+      tags:
+        - Cultures
+      summary: Read the entire set of cultures, sorted by last name
+      description: Read the entire set of cultures, sorted by last name
+      responses:
+        200:
+          description: Successfully read cultures set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the culture
+
+    post:
+      operationId: cultures.create
+      tags:
+        - People
+      summary: Create a culture
+      description: Create a new culture
+      parameters:
+        - name: culture
+          in: body
+          description: Weapon to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created culture
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the culture
+
+  /cultures/{id}:
+    get:
+      operationId: cultures.read_one
+      tags:
+        - People
+      summary: Read one culture
+      description: Read one culture
+      parameters:
+        - name: id
+          in: path
+          description: Id of the culture to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read culture from cultures data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the culture
+
+    put:  
+      operationId: cultures.update
+      tags:
+        - People
+      summary: Update a culture
+      description: Update a culture
+      parameters:
+        - name: id
+          in: path
+          description: Id the culture to update
+          type: integer
+          required: True
+        - name: culture
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated culture
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the culture in the database
+
+    delete:
+      operationId: cultures.delete
+      tags:
+        - People
+      summary: Delete a culture from the cultures list
+      description: Delete a culture
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the culture to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a culture
+
+  /cultures/cols:
+    get:
+      operationId: cultures.read_culture_cols
+      tags:
+        - Cultures
+      summary: Read culture columns
+      description: Read culture columns
+      responses:
+        200:
+          description: Successfully read columns of Cultures
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+
+# element_types
+  /element_types:
+    get:
+      operationId: element_types.read_all
+      tags:
+        - element_types
+      summary: Read the entire set of element_types, sorted by last name
+      description: Read the entire set of element_types, sorted by last name
+      responses:
+        200:
+          description: Successfully read element_types set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the element_type
+
+    post:
+      operationId: element_types.create
+      tags:
+        - element_types
+      summary: Create a element_type
+      description: Create a new element_type
+      parameters:
+        - name: element_type
+          in: body
+          description: element_type to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created element_type
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the element_type
+
+  /element_types/{id}:
+    get:
+      operationId: element_types.read_one
+      tags:
+        - element_types
+      summary: Read one element_type
+      description: Read one element_type
+      parameters:
+        - name: id
+          in: path
+          description: Id of the element_type to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read element_type from element_types data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the element_type
+
+    put:  
+      operationId: element_types.update
+      tags:
+        - element_types
+      summary: Update a element_type
+      description: Update a element_type
+      parameters:
+        - name: id
+          in: path
+          description: Id the element_type to update
+          type: integer
+          required: True
+        - name: element_type
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated element_type
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the element_type in the database
+
+    delete:
+      operationId: element_types.delete
+      tags:
+        - element_types
+      summary: Delete a element_type from the element_types list
+      description: Delete a element_type
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the element_type to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a element_type
+
+  /element_types/cols:
+    get:
+      operationId: element_types.read_element_type_cols
+      tags:
+        - element_types
+      summary: Read element_type columns
+      description: Read element_type columns
+      responses:
+        200:
+          description: Successfully read columns of element_types
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the element_type record
+       
+# owners
+  /owners:
+    get:
+      operationId: owners.read_all
+      tags:
+        - owners
+      summary: Read the entire set of owners, sorted by last name
+      description: Read the entire set of owners, sorted by last name
+      responses:
+        200:
+          description: Successfully read owners set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the owner
+
+    post:
+      operationId: owners.create
+      tags:
+        - owners
+      summary: Create a owner
+      description: Create a new owner
+      parameters:
+        - name: owner
+          in: body
+          description: owner to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created owner
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the owner
+
+  /owners/{id}:
+    get:
+      operationId: owners.read_one
+      tags:
+        - owners
+      summary: Read one owner
+      description: Read one owner
+      parameters:
+        - name: id
+          in: path
+          description: Id of the owner to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read owner from owners data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the owner
+
+    put:  
+      operationId: owners.update
+      tags:
+        - owners
+      summary: Update a owner
+      description: Update a owner
+      parameters:
+        - name: id
+          in: path
+          description: Id the owner to update
+          type: integer
+          required: True
+        - name: owner
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated owner
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the owner in the database
+
+    delete:
+      operationId: owners.delete
+      tags:
+        - owners
+      summary: Delete a owner from the owners list
+      description: Delete a owner
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the owner to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a owner
+
+  /owners/cols:
+    get:
+      operationId: owners.read_owner_cols
+      tags:
+        - owners
+      summary: Read owner columns
+      description: Read owner columns
+      responses:
+        200:
+          description: Successfully read columns of owners
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the owner record
+
+# status_effects
+  /status_effects:
+    get:
+      operationId: status_effects.read_all
+      tags:
+        - status_effects
+      summary: Read the entire set of status_effects, sorted by last name
+      description: Read the entire set of status_effects, sorted by last name
+      responses:
+        200:
+          description: Successfully read status_effects set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the status_effect
+
+    post:
+      operationId: status_effects.create
+      tags:
+        - status_effects
+      summary: Create a status_effect
+      description: Create a new status_effect
+      parameters:
+        - name: status_effect
+          in: body
+          description: status_effect to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created status_effect
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the status_effect
+
+  /status_effects/{id}:
+    get:
+      operationId: status_effects.read_one
+      tags:
+        - status_effects
+      summary: Read one status_effect
+      description: Read one status_effect
+      parameters:
+        - name: id
+          in: path
+          description: Id of the status_effect to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read status_effect from status_effects data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the status_effect
+
+    put:  
+      operationId: status_effects.update
+      tags:
+        - status_effects
+      summary: Update a status_effect
+      description: Update a status_effect
+      parameters:
+        - name: id
+          in: path
+          description: Id the status_effect to update
+          type: integer
+          required: True
+        - name: status_effect
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated status_effect
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the status_effect in the database
+
+    delete:
+      operationId: status_effects.delete
+      tags:
+        - status_effects
+      summary: Delete a status_effect from the status_effects list
+      description: Delete a status_effect
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the status_effect to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a status_effect
+
+  /status_effects/cols:
+    get:
+      operationId: status_effects.read_status_effect_cols
+      tags:
+        - status_effects
+      summary: Read status_effect columns
+      description: Read status_effect columns
+      responses:
+        200:
+          description: Successfully read columns of status_effects
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the status_effect record
+   
+# armor_types
+  /armor_types:
+    get:
+      operationId: armor_types.read_all
+      tags:
+        - ArmorTypes
+      summary: Read the entire set of armor_types, sorted by last name
+      description: Read the entire set of armor_types, sorted by last name
+      responses:
+        200:
+          description: Successfully read armor_types set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the armor_type
+
+    post:
+      operationId: armor_types.create
+      tags:
+        - People
+      summary: Create a armor_type
+      description: Create a new armor_type
+      parameters:
+        - name: armor_type
+          in: body
+          description: Weapon to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created armor_type
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the armor_type
+
+  /armor_types/{id}:
+    get:
+      operationId: armor_types.read_one
+      tags:
+        - People
+      summary: Read one armor_type
+      description: Read one armor_type
+      parameters:
+        - name: id
+          in: path
+          description: Id of the armor_type to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read armor_type from armor_types data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the armor_type
+
+    put:  
+      operationId: armor_types.update
+      tags:
+        - People
+      summary: Update a armor_type
+      description: Update a armor_type
+      parameters:
+        - name: id
+          in: path
+          description: Id the armor_type to update
+          type: integer
+          required: True
+        - name: armor_type
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated armor_type
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the armor_type in the database
+
+    delete:
+      operationId: armor_types.delete
+      tags:
+        - People
+      summary: Delete a armor_type from the armor_types list
+      description: Delete a armor_type
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the armor_type to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a armor_type
+
+  /armor_types/cols:
+    get:
+      operationId: armor_types.read_armor_type_cols
+      tags:
+        - ArmorSlots
+      summary: Read armor_type columns
+      description: Read armor_type columns
+      responses:
+        200:
+          description: Successfully read columns of ArmorSlots
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+
+# backpacks
+  /backpacks:
+    get:
+      operationId: backpacks.read_all
+      tags:
+        - Backpacks
+      summary: Read the entire set of backpacks, sorted by last name
+      description: Read the entire set of backpacks, sorted by last name
+      responses:
+        200:
+          description: Successfully read backpacks set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the backpack
+
+    post:
+      operationId: backpacks.create
+      tags:
+        - People
+      summary: Create a backpack
+      description: Create a new backpack
+      parameters:
+        - name: backpack
+          in: body
+          description: Weapon to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created backpack
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the backpack
+
+  /backpacks/{id}:
+    get:
+      operationId: backpacks.read_one
+      tags:
+        - People
+      summary: Read one backpack
+      description: Read one backpack
+      parameters:
+        - name: id
+          in: path
+          description: Id of the backpack to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read backpack from backpacks data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the backpack
+
+    put:  
+      operationId: backpacks.update
+      tags:
+        - People
+      summary: Update a backpack
+      description: Update a backpack
+      parameters:
+        - name: id
+          in: path
+          description: Id the backpack to update
+          type: integer
+          required: True
+        - name: backpack
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated backpack
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the backpack in the database
+
+    delete:
+      operationId: backpacks.delete
+      tags:
+        - People
+      summary: Delete a backpack from the backpacks list
+      description: Delete a backpack
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the backpack to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a backpack
+
+  /backpacks/cols:
+    get:
+      operationId: backpacks.read_backpack_cols
+      tags:
+        - Backpacks
+      summary: Read backpack columns
+      description: Read backpack columns
+      responses:
+        200:
+          description: Successfully read columns of Backpacks
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+
+# users
+  /users:
+    get:
+      operationId: users.read_all
+      tags:
+        - Users
+      summary: Read the entire set of users, sorted by last name
+      description: Read the entire set of users, sorted by last name
+      responses:
+        200:
+          description: Successfully read users set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the user
+
+    post:
+      operationId: users.create
+      tags:
+        - People
+      summary: Create a user
+      description: Create a new user
+      parameters:
+        - name: user
+          in: body
+          description: Weapon to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created user
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the user
+
+  /users/{id}:
+    get:
+      operationId: users.read_one
+      tags:
+        - People
+      summary: Read one user
+      description: Read one user
+      parameters:
+        - name: id
+          in: path
+          description: Id of the user to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read user from users data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the user
+
+    put:  
+      operationId: users.update
+      tags:
+        - People
+      summary: Update a user
+      description: Update a user
+      parameters:
+        - name: id
+          in: path
+          description: Id the user to update
+          type: integer
+          required: True
+        - name: user
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated user
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the user in the database
+
+    delete:
+      operationId: users.delete
+      tags:
+        - People
+      summary: Delete a user from the users list
+      description: Delete a user
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the user to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a user
+
+  /users/cols:
+    get:
+      operationId: users.read_user_cols
+      tags:
+        - Users
+      summary: Read user columns
+      description: Read user columns
+      responses:
+        200:
+          description: Successfully read columns of Backpacks
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+
+                # users
+  /users:
+    get:
+      operationId: users.read_all
+      tags:
+        - Users
+      summary: Read the entire set of users, sorted by last name
+      description: Read the entire set of users, sorted by last name
+      responses:
+        200:
+          description: Successfully read users set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the user
+
+    post:
+      operationId: users.create
+      tags:
+        - People
+      summary: Create a user
+      description: Create a new user
+      parameters:
+        - name: user
+          in: body
+          description: Weapon to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created user
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the user
+
+  /users/{id}:
+    get:
+      operationId: users.read_one
+      tags:
+        - People
+      summary: Read one user
+      description: Read one user
+      parameters:
+        - name: id
+          in: path
+          description: Id of the user to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read user from users data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the user
+
+    put:  
+      operationId: users.update
+      tags:
+        - People
+      summary: Update a user
+      description: Update a user
+      parameters:
+        - name: id
+          in: path
+          description: Id the user to update
+          type: integer
+          required: True
+        - name: user
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated user
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the user in the database
+
+    delete:
+      operationId: users.delete
+      tags:
+        - People
+      summary: Delete a user from the users list
+      description: Delete a user
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the user to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a user
+
+  /users/cols:
+    get:
+      operationId: users.read_user_cols
+      tags:
+        - Users
+      summary: Read user columns
+      description: Read user columns
+      responses:
+        200:
+          description: Successfully read columns of Backpacks
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+
+# loadouts
+  /loadouts:
+    get:
+      operationId: loadouts.read_all
+      tags:
+        - Loadouts
+      summary: Read the entire set of loadouts, sorted by last name
+      description: Read the entire set of loadouts, sorted by last name
+      responses:
+        200:
+          description: Successfully read loadouts set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the loadout
+
+    post:
+      operationId: loadouts.create
+      tags:
+        - People
+      summary: Create a loadout
+      description: Create a new loadout
+      parameters:
+        - name: loadout
+          in: body
+          description: Weapon to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created loadout
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the loadout
+
+  /loadouts/{id}:
+    get:
+      operationId: loadouts.read_one
+      tags:
+        - People
+      summary: Read one loadout
+      description: Read one loadout
+      parameters:
+        - name: id
+          in: path
+          description: Id of the loadout to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read loadout from loadouts data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the loadout
+
+    put:  
+      operationId: loadouts.update
+      tags:
+        - People
+      summary: Update a loadout
+      description: Update a loadout
+      parameters:
+        - name: id
+          in: path
+          description: Id the loadout to update
+          type: integer
+          required: True
+        - name: loadout
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated loadout
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the loadout in the database
+
+    delete:
+      operationId: loadouts.delete
+      tags:
+        - People
+      summary: Delete a loadout from the loadouts list
+      description: Delete a loadout
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the loadout to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a loadout
+
+  /loadouts/cols:
+    get:
+      operationId: loadouts.read_loadout_cols
+      tags:
+        - Loadouts
+      summary: Read loadout columns
+      description: Read loadout columns
+      responses:
+        200:
+          description: Successfully read columns of Backpacks
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+
+# unique_weapons
+  /unique_weapons:
+    get:
+      operationId: unique_weapons.read_all
+      tags:
+        - UniqueWeapons
+      summary: Read the entire set of unique_weapons, sorted by last name
+      description: Read the entire set of unique_weapons, sorted by last name
+      responses:
+        200:
+          description: Successfully read unique_weapons set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the unique_weapon
+
+    post:
+      operationId: unique_weapons.create
+      tags:
+        - People
+      summary: Create a unique_weapon
+      description: Create a new unique_weapon
+      parameters:
+        - name: unique_weapon
+          in: body
+          description: Weapon to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created unique_weapon
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the unique_weapon
+
+  /unique_weapons/{id}:
+    get:
+      operationId: unique_weapons.read_one
+      tags:
+        - People
+      summary: Read one unique_weapon
+      description: Read one unique_weapon
+      parameters:
+        - name: id
+          in: path
+          description: Id of the unique_weapon to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read unique_weapon from unique_weapons data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the unique_weapon
+
+    put:  
+      operationId: unique_weapons.update
+      tags:
+        - People
+      summary: Update a unique_weapon
+      description: Update a unique_weapon
+      parameters:
+        - name: id
+          in: path
+          description: Id the unique_weapon to update
+          type: integer
+          required: True
+        - name: unique_weapon
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated unique_weapon
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the unique_weapon in the database
+
+    delete:
+      operationId: unique_weapons.delete
+      tags:
+        - People
+      summary: Delete a unique_weapon from the unique_weapons list
+      description: Delete a unique_weapon
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the unique_weapon to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a unique_weapon
+
+  /unique_weapons/cols:
+    get:
+      operationId: unique_weapons.read_unique_weapon_cols
+      tags:
+        - UniqueWeapons
+      summary: Read unique_weapon columns
+      description: Read unique_weapon columns
+      responses:
+        200:
+          description: Successfully read columns of Backpacks
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record
+
+# unique_armor
+  /unique_armor:
+    get:
+      operationId: unique_armor.read_all
+      tags:
+        - UniqueWeapons
+      summary: Read the entire set of unique_armor, sorted by last name
+      description: Read the entire set of unique_armor, sorted by last name
+      responses:
+        200:
+          description: Successfully read unique_armor set operation
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: string
+                  description: Id of the unique_armor
+
+    post:
+      operationId: unique_armor.create
+      tags:
+        - People
+      summary: Create a unique_armor
+      description: Create a new unique_armor
+      parameters:
+        - name: unique_armor
+          in: body
+          description: Weapon to create
+          required: True
+          schema:
+            type: object
+      responses:
+        201:
+          description: Successfully created unique_armor
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the unique_armor
+
+  /unique_armor/{id}:
+    get:
+      operationId: unique_armor.read_one
+      tags:
+        - People
+      summary: Read one unique_armor
+      description: Read one unique_armor
+      parameters:
+        - name: id
+          in: path
+          description: Id of the unique_armor to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read unique_armor from unique_armor data operation
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the unique_armor
+
+    put:  
+      operationId: unique_armor.update
+      tags:
+        - People
+      summary: Update a unique_armor
+      description: Update a unique_armor
+      parameters:
+        - name: id
+          in: path
+          description: Id the unique_armor to update
+          type: integer
+          required: True
+        - name: unique_armor
+          in: body
+          schema:
+            type: object
+      responses:
+        200:
+          description: Successfully updated unique_armor
+          schema:
+            properties:
+              id:
+                type: string
+                description: Id of the unique_armor in the database
+
+    delete:
+      operationId: unique_armor.delete
+      tags:
+        - People
+      summary: Delete a unique_armor from the unique_armor list
+      description: Delete a unique_armor
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          description: Id of the unique_armor to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a unique_armor
+
+  /unique_armor/cols:
+    get:
+      operationId: unique_armor.read_unique_armor_cols
+      tags:
+        - UniqueWeapons
+      summary: Read unique_armor columns
+      description: Read unique_armor columns
+      responses:
+        200:
+          description: Successfully read columns of Backpacks
+          schema:
+            type: object
+            properties:
+              col_name:
+                type: string
+                description: Name of column
+              col_type:
+                type: string
+                description: Type of column
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the damage_type record

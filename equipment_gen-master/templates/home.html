@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Application Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
+    <script src="https://kit.fontawesome.com/dd091e55dc.js" crossorigin="anonymous"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Overrides -->
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+
+<body>
+    <!-- <a href="/weapons">LINK</a> -->
+    <div id="app">
+        <c-header
+            title="RPG Weapon Generator"
+            text="This project allows you to generate weapons with
+            varying properties. You can even modify the properties
+            that underly the generation engine.">
+        </c-header>
+        <c-navbar ></c-navbar>
+        <b-container class="main-body">
+        <!-- All body content goes here -->
+        <!-- This first div is the link to weapon generator -->
+            <div>
+            <b-link class="c-card-link" href="/generate_unique_weapon">
+                <b-card
+                    class="c-card-class-lg text-center"
+                    title="Random Weapon Generator"
+                    sub-title=""
+                >
+                    <b-card-text>
+                        Generate a random weapon from the tables in the database
+                    </b-card-text>
+                </b-card>
+            </b-link>
+            </div>
+            <b-card-group columns class="c-card-group">
+                <c-card
+                title="Loadout & Backpack"
+                text="View and modify user loadout and backpack"
+                link="/loadouts"
+                image="fad fa-street-view fa-10x"
+                ></c-card>
+                <c-card
+                    title="Damage Types"
+                    text="View, modify, create, and delete the listed Damage Types"
+                    link="/damage_types"
+                    image="fad fa-claw-marks fa-10x"
+                ></c-card>
+                <c-card
+                    title="Weapon Types"
+                    text="View, modify, create, and delete the types of weapons."
+                    link="/base_weapons"
+                    image="fad fa-swords fa-10x"
+                ></c-card>
+                <c-card
+                    title="Cultures"
+                    text="View, modify, create, and delete the types of cultures"
+                    link="/cultures"
+                    image="fad fa-users-crown fa-10x"
+                ></c-card>
+                <c-card
+                    title="Element Types"
+                    text="View, modify, create, and delete types of elements"
+                    link="/element_types"
+                    image="fad fa-fire fa-10x"
+                ></c-card>
+                <c-card
+                    title="Owners"
+                    text="View, modify, create, and delete individuals and companies who may own or manufacture equipment"
+                    link="/owners"
+                    image="fad fa-user fa-10x"
+                ></c-card>
+                <c-card
+                    title="Status Effects"
+                    text="View, modify, create, and delete status effects which people may incur"
+                    link="/status_effects"
+                    image="fad fa-user-injured fa-10x"
+                ></c-card>
+            </b-card-group>
+        </b-container>
+        <!-- Footer -->
+        <b-container fluid class="footer rounded-0 text-center">
+            <b-row>
+                <b-col>1 of 3</b-col>
+                <b-col>2 of 3</b-col>
+                <b-col>3 of 3</b-col>
+            </b-row>
+        </b-container>
+    </div>
+</body>
+
+<script src="../static/js/main.js"></script>
+</html>

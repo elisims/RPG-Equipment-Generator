@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Application Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+        </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
+    <!-- Load polyfills to support older browsers -->
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script> -->
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Overrides -->
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+
+<body>
+    <div id="app">
+        <c-header
+            title="Random Item Generator"
+            text="This pieces all the parts of the site together and generates a random item!">
+        </c-header>
+        <c-navbar ></c-navbar>
+        <b-container>
+            <!-- Stuff goes here -->
+            <!-- Button to call  -->
+            <b-button 
+                @click="get_random_item" 
+                size="lg" 
+                variant="success" 
+                style="margin-bottom: 24px"
+            >
+                Generate Random Item
+            </b-button>
+            <div v-if="!jQuery.isEmptyObject(rand_item)" class="text-center">
+                <b-card>
+                    <b-button @click="add_to_database">Add to database</b-button>
+                    <div class="c-table" style="font-size: 48px">
+                        <span v-if="rand_item.nickname">Nickname: [[ rand_item.nickname ]]<br></span>
+                        <span v-if="rand_item.item_type">Item Type: [[ rand_item.item_type ]]<br></span>
+                        <span v-if="rand_item.item_type=='weapon'">Base weapon: [[ rand_item.base_weapon_id ]]<br></span>
+                            <span v-else-if="rand_item.item_type=='armor'">Base Armor: [[rand_item.base_armor_id ]]<br></span>
+                        <span v-if="rand_item.level">Level: [[ rand_item.level ]]<br></span>
+                        <span v-if="rand_item.item_type=='weapon'">Added Damage: [[ rand_item.added_damage ]]<br></span>
+                        <span v-if="rand_item.item_type=='weapon'">Element: [[ rand_item.element_id ]]<br></span>
+                        <span v-if="rand_item.owner_id">Owner: [[ rand_item.owner_id ]]<br></span>
+                        <span v-if="rand_item.culture_id">Culture: [[ rand_item.culture_id ]]<br></span>
+                        <span v-if="rand_item.description">Description: [[ rand_item. description ]]</span>
+                    </div>
+                </b-card>
+            </div>
+            
+            <div class="error">
+            </div>
+        </b-container>
+    </div>
+</body>
+
+<script src="../static/js/main.js"></script>
+
+</html>

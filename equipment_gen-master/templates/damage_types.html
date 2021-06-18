@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Application Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+        </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
+    <!-- Load polyfills to support older browsers -->
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script> -->
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Overrides -->
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+
+<body>
+    <!-- <a href="/weapons">LINK</a> -->
+    <div id="app">
+        <c-header
+            title="Damage Types"
+            text="Varying types of damage that a weapon or 
+            other events may cause. These are often physical
+            as opposed to status effects like poinson or burn">
+        </c-header>
+        <c-navbar ></c-navbar>
+        <b-container>
+            <!-- Table -->
+            <template>
+                <div>
+                    <!-- @caption is what the table is labeled as
+                        @api is the api root we access (e.g. weapons or damage_types)
+                        @dbTable isn't used much but is the table accessed in the DB -->
+                    <db-table caption="Damage Types" api='damage_types' dbTable='damage_types'></db-table>
+                </div>
+            </template>
+            <div class="error">
+            </div>
+        </b-container>
+    </div>
+</body>
+
+<script src="../static/js/main.js"></script>
+
+</html>
